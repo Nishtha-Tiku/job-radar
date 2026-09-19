@@ -1,0 +1,28 @@
+# Job Radar settings. Edit freely.
+target_count: 50            # how many jobs to send each morning
+max_days_old: 7             # ignore postings older than this
+max_min_years: 3            # skip jobs that ask for more than this many minimum years
+min_score: 20               # 0-100 resume-match score needed to be listed
+max_per_company: 1          # aim for distinct companies...
+max_per_company_fallback: 3 # ...but allow up to this many per company if there are not enough
+verify_pool: 250            # how many top candidates to link-check
+
+search_terms:
+  - java backend developer
+  - java developer
+  - spring boot developer
+  - software engineer java
+  - backend engineer java
+  - java kafka
+  - apache camel
+  - integration engineer java
+  - microservices java
+
+adzuna_pages: 2             # pages of 50 results per search term
+sources:
+  adzuna: true
+  jooble: true
+  remotive: true
+  greenhouse: true
+  lever: true
+  ashby: true

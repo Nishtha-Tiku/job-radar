@@ -1,0 +1,22 @@
+# Company career boards read through their public JSON feeds.
+# A slug is the last part of the careers URL:
+#   boards.greenhouse.io/<slug>     jobs.lever.co/<slug>     jobs.ashbyhq.com/<slug>
+# Slugs that do not exist are skipped automatically (the run log shows them).
+# Add companies you like. I have not verified every slug below.
+greenhouse:
+  - postman
+  - stripe
+  - cloudflare
+  - databricks
+  - gitlab
+  - twilio
+  - datadog
+  - elastic
+  - mongodb
+  - okta
+  - coinbase
+lever:
+  - paytm
+  - cred
+  - meesho
+ashby: []

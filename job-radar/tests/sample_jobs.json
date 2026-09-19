@@ -1,0 +1,128 @@
+[
+ {
+  "title": "Java Backend Developer",
+  "company": "Sample Corp A",
+  "location": "Noida, Uttar Pradesh",
+  "url": "https://example.com/a",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "We need 1-3 years of experience in Java, Spring Boot, Kafka, REST APIs, PostgreSQL and Docker."
+ },
+ {
+  "title": "Software Engineer - Integration",
+  "company": "Sample Corp B",
+  "location": "Gurugram",
+  "url": "https://example.com/b",
+  "source": "Greenhouse",
+  "posted": "2026-09-17",
+  "description": "2+ years experience building microservices with Java 17, Apache Camel and Kafka. ERP integrations (SAP, NetSuite)."
+ },
+ {
+  "title": "Senior Java Developer",
+  "company": "Sample Corp C",
+  "location": "Bengaluru",
+  "url": "https://example.com/c",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "8+ years of experience with Java and Spring."
+ },
+ {
+  "title": "Java Developer",
+  "company": "Sample Corp D",
+  "location": "Pune",
+  "url": "https://example.com/d",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "Minimum 5 years of experience in Java and Spring Boot."
+ },
+ {
+  "title": "Java Developer Intern",
+  "company": "Sample Corp E",
+  "location": "Hyderabad",
+  "url": "https://example.com/e",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "Learn Java with our team."
+ },
+ {
+  "title": ".NET Developer",
+  "company": "Sample Corp F",
+  "location": "Noida",
+  "url": "https://example.com/f",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "C# .NET Core, 2 years experience."
+ },
+ {
+  "title": "Backend Engineer",
+  "company": "Sample Corp G",
+  "location": "Bengaluru",
+  "url": "https://example.com/g",
+  "source": "Lever",
+  "posted": "2026-09-16",
+  "description": "Python and Go services. 2 years experience."
+ },
+ {
+  "title": "Backend Engineer",
+  "company": "Sample Corp H",
+  "location": "Bengaluru, India",
+  "url": "https://example.com/h",
+  "source": "Lever",
+  "posted": "2026-09-16",
+  "description": "Build services in Java and Spring Boot. 1-3 years of experience."
+ },
+ {
+  "title": "Java Developer",
+  "company": "Sample Corp I",
+  "location": "San Francisco, CA",
+  "url": "https://example.com/i",
+  "source": "Greenhouse",
+  "posted": "2026-09-18",
+  "description": "Java and Spring Boot. 2 years experience."
+ },
+ {
+  "title": "Java Developer",
+  "company": "Sample Corp J",
+  "location": "Remote (Worldwide)",
+  "url": "https://example.com/j",
+  "source": "Remotive",
+  "posted": "2026-09-18",
+  "description": "Java, Spring Boot, microservices. 3 years experience."
+ },
+ {
+  "title": "Java Developer",
+  "company": "Sample Corp K",
+  "location": "Noida",
+  "url": "https://example.com/k",
+  "source": "Adzuna",
+  "posted": "2026-08-01",
+  "description": "Java and Spring Boot. 2 years experience."
+ },
+ {
+  "title": "Java Backend Developer",
+  "company": "Sample Corp A",
+  "location": "Noida, Uttar Pradesh",
+  "url": "https://example.com/a2",
+  "source": "Jooble",
+  "posted": "2026-09-18",
+  "description": "Java, Spring Boot, Kafka. 1-3 years experience."
+ },
+ {
+  "title": "Member of Technical Staff",
+  "company": "Sample Corp L",
+  "location": "Bengaluru",
+  "url": "https://example.com/l",
+  "source": "Greenhouse",
+  "posted": "2026-09-18",
+  "description": "Java, Kafka and microservices. 2 years of experience."
+ },
+ {
+  "title": "Java Developer",
+  "company": "Sample Corp A",
+  "location": "Noida",
+  "url": "https://example.com/a3",
+  "source": "Adzuna",
+  "posted": "2026-09-18",
+  "description": "Java Spring Boot REST APIs, 2 to 4 years experience."
+ }
+]
