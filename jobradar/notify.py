@@ -65,12 +65,24 @@ def send_email(env, jobs: list[Job], summary: str, today: dt.date) -> None:
     print(f"Email: sent {len(jobs)} jobs to {msg['To']}")
 
 
-def post_sheet(env, jobs: list[Job], today: dt.date) -> None:
+def post_sheet(env, jobs: list[Job], today: dt.date, resumes=None) -> None:
+    """Append jobs (and, if given, tailored resume PDFs) to the Daily Jobs tab through the Apps Script web app."""
+    import base64
+
     url, token = env.get("SHEET_WEBHOOK_URL"), env.get("SHEET_TOKEN")
     if not (url and token):
         print("Sheet: skipped (no SHEET_WEBHOOK_URL / SHEET_TOKEN)")
         return
-    rows = [[today.isoformat(), j.company, j.title, j.location, j.url, j.source, j.score,
-             STATUS_LABEL.get(j.link_status, j.link_status)] for j in jobs]
-    r = requests.post(url, json={"token": token, "rows": rows}, timeout=60)
-    print(f"Sheet: HTTP {r.status_code} {r.text[:200]}")
+    items = []
+    for i, j in enumerate(jobs):
+        fit, gaps, pdf = "", "", None
+        if resumes:
+            name, data, t = resumes[i]
+            fit, gaps = t.fit, t.gaps or ("generic resume (AI unavailable)" if t.mode == "fallback" else "")
+            pdf = {"name": name, "b64": base64.b64encode(data).decode("ascii")}
+        row = [today.isoformat(), j.company, j.title, j.location, j.url, j.source, j.score,
+               STATUS_LABEL.get(j.link_status, j.link_status), fit, gaps, ""]
+        items.append({"row": row, "pdf": pdf})
+    for start in range(0, len(items), 10):          # small batches keep each request light
+        r = requests.post(url, json={"token": token, "items": items[start:start + 10]}, timeout=180)
+        print(f"Sheet: batch {start // 10 + 1} HTTP {r.status_code} {r.text[:160]}")

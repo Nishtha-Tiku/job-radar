@@ -1,0 +1,190 @@
+{
+ "header": {
+  "name": "Nishtha Tiku",
+  "phone": "+91 9906388942",
+  "email": "nishthatiku16@gmail.com",
+  "location": "Noida, Uttar Pradesh",
+  "linkedin": "https://www.linkedin.com/in/nishtha-tiku-7778441b4/",
+  "github": "https://github.com/Nishtha-Tiku"
+ },
+ "summary_base": "Java Backend Developer with 3 years of experience designing high-throughput, secure microservices and REST APIs within Service-Oriented Architectures. Skilled in Spring Boot, Kafka-based event-driven systems, and Redis caching for performance optimization, with a consistent record of applying TDD and OWASP security practices to enterprise-grade platforms.",
+ "experience": [
+  {
+   "id": "siemens",
+   "role": "Software Developer I, Enterprise ERP Integration Platform",
+   "org": "Siemens AMS",
+   "place": "Noida, India",
+   "dates": "Nov 2023 - Present",
+   "bullets": [
+    {
+     "id": "e1",
+     "text": "Cut manual ERP data entry by 60% by architecting a bidirectional sync microservice that keeps data consistent in real time across enterprise ERP systems."
+    },
+    {
+     "id": "e2",
+     "text": "Accelerated release cycles by about 40% by automating 20+ RESTful APIs and event-driven Kafka and Apache Camel workflows across 4 ERP platforms within a Service-Oriented Architecture."
+    },
+    {
+     "id": "e3",
+     "text": "Eliminated manual procurement, inventory and maintenance workflows across Oracle NetSuite, Dynamics 365, SAP and Brightly EAM by integrating the platforms and designing the relational schema for a new ERP-to-EAM integration."
+    },
+    {
+     "id": "e4",
+     "text": "Mitigated common security vulnerabilities per OWASP Top 10 guidelines by designing and implementing OAuth2-based JWT authentication through a custom Camel interceptor."
+    },
+    {
+     "id": "e5",
+     "text": "Reduced regression defects and cut connector development effort by 35-45% by following Test-Driven Development with JUnit and Mockito and building reusable adapter frameworks."
+    },
+    {
+     "id": "e6",
+     "text": "Improved integration sync throughput and reduced redundant ERP calls by implementing Redis-based caching for frequently accessed integration data."
+    },
+    {
+     "id": "e7",
+     "text": "Cut repeat production issues by 30-40% and accelerated pull request turnaround by about 30% by collaborating across 6 engineering teams on 150+ pull request reviews and authoring 20+ architecture and troubleshooting documents."
+    },
+    {
+     "id": "e8",
+     "text": "Automated procurement, inventory and maintenance data flows by using GraphQL queries against NetSuite APIs within the ERP integration platform."
+    },
+    {
+     "id": "e9",
+     "text": "Built a React dashboard for the Brightly ERP-to-EAM integration and data mapping flow."
+    },
+    {
+     "id": "e10",
+     "text": "Prototyped RAG-based documentation search and LLM-driven data extraction with Spring AI and the Claude API to evaluate their fit within the ERP integration platform."
+    }
+   ]
+  },
+  {
+   "id": "uboard",
+   "role": "Data Analyst Intern",
+   "org": "UBoard India",
+   "place": "Gurgaon, India",
+   "dates": "Aug 2022 - Sep 2022",
+   "bullets": [
+    {
+     "id": "u1",
+     "text": "Improved inventory forecasting accuracy by about 15% across 100+ retail outlets using Python-based forecasting and clustering models (Pandas, NumPy, Matplotlib, Seaborn)."
+    }
+   ]
+  }
+ ],
+ "projects": [
+  {
+   "id": "rag",
+   "name": "RAG-Based Enterprise Support Assistant",
+   "dates": "Nov 2025 - Jan 2026",
+   "stack": "Spring Boot, Spring AI, PostgreSQL (pgvector), Claude API, Docker, Kubernetes",
+   "bullets": [
+    {
+     "id": "p1",
+     "text": "Achieved 85% answer relevance on a 50-question evaluation set by building a retrieval-augmented generation system with a hybrid BM25 and vector search pipeline over ERP integration documentation."
+    },
+    {
+     "id": "p2",
+     "text": "Containerized and deployed the system using Docker and Kubernetes, with a Spring Boot service layer handling API orchestration and PostgreSQL-backed persistence."
+    }
+   ]
+  },
+  {
+   "id": "llm",
+   "name": "LLM-Powered Data Mapping & Extraction Pipeline",
+   "dates": "May 2026 - Jun 2026",
+   "stack": "Java, Spring Boot, Claude API, Kafka, JSON Schema, Docker",
+   "bullets": [
+    {
+     "id": "p3",
+     "text": "Achieved 92% field-level extraction accuracy on a 30-document evaluation set by building an LLM-powered pipeline that converts unstructured invoice and PO documents into schema-validated JSON using structured-output prompting."
+    },
+    {
+     "id": "p4",
+     "text": "Deployed the pipeline as containerized Spring Boot microservices communicating via Kafka, mirroring production-grade event-driven integration patterns."
+    }
+   ]
+  },
+  {
+   "id": "sag",
+   "name": "Sagacity: Mental Health Support Platform",
+   "dates": "Sep 2023 - Jan 2024",
+   "stack": "Python, BERT, NLP, Flask, React",
+   "bullets": [
+    {
+     "id": "p5",
+     "text": "Achieved an F1-score of 0.86 by integrating a BERT-based NLP model into a Flask backend, and co-authored the accompanying published research paper."
+    }
+   ]
+  }
+ ],
+ "skills": {
+  "Core": [
+   "Java (8/11/17/21)",
+   "Spring Boot",
+   "RESTful APIs",
+   "Microservices (SOA)",
+   "Apache Kafka",
+   "Apache Camel",
+   "Redis",
+   "GraphQL",
+   "Enterprise Integration Patterns"
+  ],
+  "Testing & Security": [
+   "JUnit",
+   "Mockito",
+   "TDD",
+   "OAuth2",
+   "JWT",
+   "OWASP Top 10",
+   "HashiCorp Vault"
+  ],
+  "Databases": [
+   "SQL",
+   "PostgreSQL",
+   "MySQL",
+   "Hibernate/JPA",
+   "Liquibase",
+   "pgvector"
+  ],
+  "DevOps": [
+   "Docker",
+   "Kubernetes",
+   "Git",
+   "Maven",
+   "Gradle",
+   "CI/CD",
+   "SonarQube",
+   "Grafana",
+   "Postman"
+  ],
+  "Generative AI": [
+   "Spring AI",
+   "RAG",
+   "LLM APIs (Claude, OpenAI)",
+   "LangChain4j"
+  ],
+  "Additional": [
+   "Oracle NetSuite",
+   "Quarkus",
+   "Swagger/OpenAPI",
+   "React",
+   "Python",
+   "SOLID Principles",
+   "Agile/SDLC",
+   "Data Structures",
+   "Idempotency",
+   "API Versioning"
+  ]
+ },
+ "education": {
+  "degree": "B.Tech in Information Technology",
+  "school": "ABES Engineering College (AKTU University)",
+  "dates": "Aug 2020 - May 2024",
+  "score": "CGPA: 7.91/10"
+ },
+ "certifications": [
+  "Prime Minister's Special Scholarship Scheme (PMSSS), Government of India merit scholarship covering tuition and accommodation.",
+  "Cisco Networking Academy: Programming Essentials in Python."
+ ]
+}

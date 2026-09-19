@@ -26,3 +26,9 @@ sources:
   greenhouse: true
   lever: true
   ashby: true
+
+resumes:
+  enabled: true
+  model: claude-sonnet-5     # cheaper option: claude-haiku-4-5-20251001
+  workers: 4                 # resumes made in parallel
+  max_jd_chars: 6000         # how much of each job description is sent to the model

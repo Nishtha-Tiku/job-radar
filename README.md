@@ -48,3 +48,20 @@ python -m jobradar --dry-run --sample tests/sample_jobs.json --no-verify
 - LinkedIn, Naukri and Indeed cannot be read legally by a program, so keep their saved-search alerts as well.
 - "could not check" next to a link means that site blocks automated checks. The link is usually fine.
 - Jobs already sent are remembered in `data/sent.json`, so you do not get repeats.
+
+## Tailored resumes (new)
+
+For every job in the daily list the program writes a one-page PDF resume tailored to that job description.
+It uses only the facts in `master_resume.json` (edit that file to change what the resumes can say).
+
+- The resumes are saved in a Google Drive folder called **Job Radar Resumes** and linked in the **Tailored resume**
+  column of the Daily Jobs tab. They are not attached to the email.
+- The sheet also shows an AI **Resume fit** score out of 100 and **Gaps to consider**: keywords the job wants that your
+  facts do not support. Add a gap to your resume only if it is true.
+- Safety checks in code: numbers must come from the bullet being rewritten, skills must come from your list, unlisted
+  technologies, the company name, em dashes and en dashes are rejected. A bullet that fails a check falls back to your
+  original master bullet.
+- Needs a secret named `ANTHROPIC_API_KEY` (console.anthropic.com, add a small credit balance). Without it the resumes are
+  generic (untailored). The model is set in `config.yaml` (`resumes.model`).
+- After copying the new `apps_script/Code.gs` into your Sheet's Apps Script: Deploy > Manage deployments > pencil icon >
+  Version: New version > Deploy, then approve the extra Google Drive permission when asked.
