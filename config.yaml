@@ -29,6 +29,8 @@ sources:
 
 resumes:
   enabled: true
-  model: claude-sonnet-5     # cheaper option: claude-haiku-4-5-20251001
-  workers: 4                 # resumes made in parallel
-  max_jd_chars: 6000         # how much of each job description is sent to the model
+  provider: gemini                   # gemini (free tier) or anthropic (paid)
+  model: gemini-3.5-flash-lite       # copy the exact model ID from Google AI Studio; for anthropic use claude-sonnet-5
+  requests_per_minute: 8             # stays under the free-tier limit
+  workers: 1                         # keep at 1 for the free tier (requests are spaced out)
+  max_jd_chars: 6000                 # how much of each job description is sent to the model

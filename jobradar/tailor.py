@@ -6,6 +6,7 @@ original master bullet, so the resume can never contain invented numbers, tools 
 """
 import json
 import re
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
@@ -290,6 +291,60 @@ def call_claude(system: str, user: str, model: str, key: str) -> str:
     raise RuntimeError(f"Anthropic API kept failing ({last})")
 
 
+_throttle_lock = threading.Lock()
+_last_call = [0.0]
+
+
+def _throttle(rpm: float) -> None:
+    """Keep free-tier requests under the per-minute limit."""
+    if not rpm or rpm <= 0:
+        return
+    with _throttle_lock:
+        wait = _last_call[0] + 60.0 / rpm - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        _last_call[0] = time.time()
+
+
+def call_gemini(system: str, user: str, model: str, key: str, rpm: float = 8) -> str:
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    body = {
+        "systemInstruction": {"parts": [{"text": system}]},
+        "contents": [{"role": "user", "parts": [{"text": user}]}],
+        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 8000, "responseMimeType": "application/json"},
+    }
+    last = ""
+    for attempt in range(5):
+        _throttle(rpm)
+        try:
+            r = requests.post(url, headers={"x-goog-api-key": key, "content-type": "application/json"}, json=body, timeout=120)
+        except requests.RequestException as e:
+            last = type(e).__name__
+            time.sleep(8 * (attempt + 1))
+            continue
+        if r.status_code in (429, 500, 502, 503, 504):
+            last = f"HTTP {r.status_code}"
+            time.sleep(12 * (attempt + 1))
+            continue
+        if r.status_code >= 400:
+            raise RuntimeError(f"Gemini API HTTP {r.status_code}: {r.text[:200]}")
+        parts = ((r.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or []
+        return "".join(p.get("text", "") for p in parts)
+    raise RuntimeError(f"Gemini API kept failing ({last})")
+
+
+def api_key(rcfg: dict, env) -> str:
+    provider = rcfg.get("provider", "gemini")
+    return env.get("GEMINI_API_KEY", "") if provider == "gemini" else env.get("ANTHROPIC_API_KEY", "")
+
+
+def call_model(system: str, user: str, rcfg: dict, key: str) -> str:
+    provider = rcfg.get("provider", "gemini")
+    if provider == "anthropic":
+        return call_claude(system, user, rcfg.get("model", "claude-sonnet-5"), key)
+    return call_gemini(system, user, rcfg.get("model", "gemini-3.5-flash-lite"), key, float(rcfg.get("requests_per_minute", 8)))
+
+
 def parse_json(text: str) -> dict:
     s, e = text.find("{"), text.rfind("}")
     if s < 0 or e <= s:
@@ -301,8 +356,7 @@ def parse_json(text: str) -> dict:
 
 def tailor_one(job: Job, master: dict, cfg: dict, key: str) -> Tailored:
     try:
-        raw = call_claude(SYSTEM, build_user_prompt(master, job, int(cfg.get("max_jd_chars", 6000))),
-                          cfg.get("model", "claude-sonnet-5"), key)
+        raw = call_model(SYSTEM, build_user_prompt(master, job, int(cfg.get("max_jd_chars", 6000))), cfg, key)
         return validate(parse_json(raw), master, job)
     except Exception as e:  # noqa: BLE001
         log(f"  ! tailoring failed for {job.company} / {job.title}: {type(e).__name__}: {str(e)[:150]}")

@@ -104,5 +104,28 @@ class TailorTests(unittest.TestCase):
         self.assertNotIn("Zephyr", tailor.file_name(job, 1, MASTER))
 
 
+class ProviderTests(unittest.TestCase):
+    def test_gemini_reply_is_parsed(self):
+        from unittest import mock
+        fake = mock.Mock(status_code=200)
+        fake.json.return_value = {"candidates": [{"content": {"parts": [{"text": '{"match_score": 70}'}]}}]}
+        with mock.patch("jobradar.tailor.requests.post", return_value=fake) as post:
+            text = tailor.call_gemini("sys", "user", "some-model", "KEY", rpm=0)
+        self.assertEqual(tailor.parse_json(text), {"match_score": 70})
+        self.assertIn("some-model:generateContent", post.call_args[0][0])
+        self.assertEqual(post.call_args[1]["headers"]["x-goog-api-key"], "KEY")
+
+    def test_api_key_follows_provider(self):
+        env = {"GEMINI_API_KEY": "g", "ANTHROPIC_API_KEY": "a"}
+        self.assertEqual(tailor.api_key({"provider": "gemini"}, env), "g")
+        self.assertEqual(tailor.api_key({"provider": "anthropic"}, env), "a")
+
+    def test_bad_model_reply_falls_back(self):
+        from unittest import mock
+        with mock.patch("jobradar.tailor.call_model", return_value="sorry, no json"):
+            t = tailor.tailor_one(JOB, MASTER, {"provider": "gemini"}, "KEY")
+        self.assertEqual(t.mode, "fallback")
+
+
 if __name__ == "__main__":
     unittest.main()

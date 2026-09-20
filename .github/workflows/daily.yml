@@ -35,6 +35,7 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           SHEET_WEBHOOK_URL: ${{ secrets.SHEET_WEBHOOK_URL }}
           SHEET_TOKEN: ${{ secrets.SHEET_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           IGNORE_HISTORY: ${{ inputs.fresh && '1' || '' }}
       - name: Save sent history

@@ -61,7 +61,10 @@ It uses only the facts in `master_resume.json` (edit that file to change what th
 - Safety checks in code: numbers must come from the bullet being rewritten, skills must come from your list, unlisted
   technologies, the company name, em dashes and en dashes are rejected. A bullet that fails a check falls back to your
   original master bullet.
-- Needs a secret named `ANTHROPIC_API_KEY` (console.anthropic.com, add a small credit balance). Without it the resumes are
-  generic (untailored). The model is set in `config.yaml` (`resumes.model`).
+- Free option (default): a Google Gemini API key from https://aistudio.google.com saved as the secret `GEMINI_API_KEY`.
+  Set `resumes.model` in `config.yaml` to a Flash-Lite model ID from AI Studio. Free-tier limits can change, and Google may
+  use free-tier prompts to improve its products.
+- Paid option: set `provider: anthropic`, a Claude model, and a secret named `ANTHROPIC_API_KEY`.
+- With no key the resumes are still made, but generic (untailored).
 - After copying the new `apps_script/Code.gs` into your Sheet's Apps Script: Deploy > Manage deployments > pencil icon >
   Version: New version > Deploy, then approve the extra Google Drive permission when asked.

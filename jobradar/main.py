@@ -60,7 +60,7 @@ def main() -> int:
         if args.resume_dir:
             out_dir = Path(args.resume_dir)
             out_dir.mkdir(parents=True, exist_ok=True)
-            for name, pdf, t in tailor.generate_all(picked, cfg, os.environ.get("ANTHROPIC_API_KEY", "")):
+            for name, pdf, t in tailor.generate_all(picked, cfg, tailor.api_key(cfg.get("resumes", {}), os.environ)):
                 (out_dir / name).write_bytes(pdf)
                 log(f"  resume {name}: {t.mode}, fit={t.fit}, gaps={t.gaps}, notes={t.notes}")
         for i, j in enumerate(picked, 1):
@@ -75,9 +75,9 @@ def main() -> int:
     rcfg = cfg.get("resumes", {})
     if rcfg.get("enabled", True):
         try:
-            key = os.environ.get("ANTHROPIC_API_KEY", "")
+            key = tailor.api_key(rcfg, os.environ)
             if not key:
-                log("Resumes: no ANTHROPIC_API_KEY, so generic (untailored) resumes will be attached")
+                log(f"Resumes: no API key for provider '{rcfg.get('provider', 'gemini')}', so generic (untailored) resumes will be made")
             resumes = tailor.generate_all(picked, cfg, key)
         except Exception as e:  # noqa: BLE001  (resumes must never stop the job list)
             log(f"Resumes: failed -> {type(e).__name__}: {e}")
